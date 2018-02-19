@@ -26,13 +26,20 @@ a = matrix(m_string)
 p = u * a
 evev = linalg.eig(a)
 eigenvecs = evev[1]
-print eigenvecs
 
 fig, ax = plt.subplots()
 ax.plot(u.T[0], u.T[1], 'bo')
 ax.plot(p.T[0], p.T[1], 'ro')
 ax.plot(eigenvecs.T[0], eigenvecs.T[1], 'r+')
-ax.plot(0, 0, '+')
+ax.plot(0, 0, 'k+')
+
+for i in range(len(u)):
+    x1 = u[i, 0]
+    y1 = u[i, 1]
+    x2 = p[i, 0]
+    y2 = p[i, 1]
+    ax.plot(x1, y1, x2, y2, 'g-')
+
 ax.set_aspect(1.0)
 ax.set_title(str(a))
 plt.show()
