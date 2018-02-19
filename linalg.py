@@ -6,7 +6,7 @@
 import matplotlib
 import matplotlib.pyplot as plt
 import sys
-from numpy import pi, sin, cos, matrix, concatenate
+from numpy import pi, sin, cos, matrix, concatenate, linalg
 
 m_string = '1 0.5; 2 1.2'
 if len(sys.argv) > 1:
@@ -24,10 +24,15 @@ for offset in [0, pi/2, pi, 1.5*pi]:
 u = matrix(unit_circle)
 a = matrix(m_string)
 p = u * a
+evev = linalg.eig(a)
+eigenvecs = evev[1]
+print eigenvecs
 
 fig, ax = plt.subplots()
 ax.plot(u.T[0], u.T[1], 'bo')
 ax.plot(p.T[0], p.T[1], 'ro')
+ax.plot(eigenvecs.T[0], eigenvecs.T[1], 'r+')
+ax.plot(0, 0, '+')
 ax.set_aspect(1.0)
 ax.set_title(str(a))
 plt.show()
