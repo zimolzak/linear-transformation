@@ -28,9 +28,12 @@ a = matrix(m_string)
 
 ## do calculations
 
-p = u * a
+p = u * a.T
 evev = linalg.eig(a)
 eigenvecs = evev[1].T # default is return vecs in columns, so I transpose it.
+
+print "Eigenvalues:", evev[0]
+print "Eigenvectors in rows:\n", eigenvecs
 
 ## plot unit circle and its transformation
 
@@ -43,12 +46,14 @@ for i in range(len(u)):
 
 ## plot eigenvectors
 
-print eigenvecs
-
 for i in range(len(eigenvecs)):
     xs = [0, eigenvecs[i,0]]
     ys = [0, eigenvecs[i,1]]
     plt.plot(xs, ys, 'r+-')
+
+p2 = eigenvecs * a.T
+for i in range(len(p2)):
+    ax.plot(p2[i,0], p2[i,1], 'r^')
 
 ## wrap up
 
