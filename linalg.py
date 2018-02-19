@@ -32,14 +32,12 @@ fig, ax = plt.subplots()
 for i in range(len(u)):
     xs = [u[i,0], p[i,0]]
     ys = [u[i,1], p[i,1]]
-    
     plt.plot(xs, ys, 'go-')
 
-#ax.plot(u.T[0], u.T[1], 'bo')
-#ax.plot(p.T[0], p.T[1], 'ro')
-
-ax.plot(eigenvecs.T[0], eigenvecs.T[1], 'r+')
-ax.plot(0, 0, 'k+')
+for i in range(len(eigenvecs)):
+    xs = [0, eigenvecs[i,0]]
+    ys = [0, eigenvecs[i,1]]
+    plt.plot(xs, ys, 'r+-')
 
 ax.set_aspect(1.0)
 ax.set_title(str(a))
