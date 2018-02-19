@@ -7,12 +7,19 @@ import matplotlib
 import matplotlib.pyplot as plt
 import sys
 from numpy import pi, sin, cos, matrix, concatenate, linalg
+from random import uniform
 
 ## set up some globals
 
 m_string = '1 0.5; 2 1.2'
 if len(sys.argv) > 1:
     m_string = sys.argv[1]
+else:
+    m_string = (str(uniform(-2,2)) + ' ' +
+                str(uniform(-2,2)) + '; ' + 
+                str(uniform(-2,2)) + ' ' +
+                str(uniform(-2,2)))
+    
 
 vi = sys.version_info
 assert vi.major == 2
