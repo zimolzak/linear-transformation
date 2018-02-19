@@ -1,3 +1,15 @@
+# examples:
+# python linalg.py "1 -0.2; 0.5 2"
+# python linalg.py "1 -1; 0 2"
+# python linalg.py
+# python linalg.py 'rot 5'
+# python linalg.py 'rotate 5'
+# python linalg.py 'rot 30'
+# python linalg.py 'rot 170'
+
+## here is junk I [maybe?] had to do to set up.
+## Most important is the last one.
+
 # python -mpip install -U pip
 # python -mpip install -U matplotlib
 # conda install python.app
@@ -11,15 +23,22 @@ from random import uniform
 
 ## set up some globals
 
+def rotation_matrix(degrees):
+    t = degrees / 360 * 2 * pi
+    return(matrix([[cos(t), -sin(t)], [sin(t), cos(t)]]))
+
 m_string = '1 0.5; 2 1.2'
 if len(sys.argv) > 1:
-    m_string = sys.argv[1]
-else:
+    if sys.argv[1].startswith('rot'):
+        degrees = float(sys.argv[1].split()[1])
+        m_string = rotation_matrix(degrees)
+    else:
+        m_string = sys.argv[1]
+else: # no argv
     m_string = (str(uniform(-2,2)) + ' ' +
                 str(uniform(-2,2)) + '; ' + 
                 str(uniform(-2,2)) + ' ' +
                 str(uniform(-2,2)))
-    
 
 vi = sys.version_info
 assert vi.major == 2
